@@ -1,25 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios'
+import React, { Component } from 'react';
 
-function App() {
+const api = axios.create({
+  baseURL:'https://localhost:44394/api/products/product'
+})
+class App extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      Products: [],
+    }
+  }
+  componentDidMount(){
+    this.getProducts()
+  }
+  getProducts = async () => {
+    let data = await api.get('/').then(({ data }) => data)
+    this.setState({ Products : data })
+    console.log(this.state.Products)
+  }
+render() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Hello World!</h1>
       </header>
     </div>
   );
+}
 }
 
 export default App;
