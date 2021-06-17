@@ -1,6 +1,7 @@
 import './App.css';
 import axios from 'axios'
 import React, { Component } from 'react';
+import Product from './Components/Products';
 
 const api = axios.create({
   baseURL:'https://localhost:44394/api/products/product'
@@ -44,6 +45,7 @@ render() {
       <header className="App-header">
         <h1>Hello World!</h1>
       </header>
+      <Product productlist={this.state.Products}/>
     </div>
   );
 }
