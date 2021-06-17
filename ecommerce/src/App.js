@@ -8,12 +8,10 @@ const api = axios.create({
 const api2 = axios.create({
   baseURL:'https://localhost:44394/api/user/user'
 })
-const api3 = axios.create({
-  baseURL:'https://localhost:44394/api/authentication'
-})
-const token = 
 
-class App extends React.Component {
+const token = 'c275b4e7-8674-4246-b49f-9a5b0ca7d83b'
+
+class App extends Component {
   constructor(){
     super();
     this.state = {
@@ -36,7 +34,7 @@ class App extends React.Component {
     console.log(this.state.CurrentUser)
   }
 render() {
-  if (!this.state.Currentuser){
+  if (!this.state.CurrentUser){
     return(
       <h3>hello not signed in person</h3>
     )
