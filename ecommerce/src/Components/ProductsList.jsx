@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Products extends Component {
+class ProductsList extends Component {
     constructor(){
         super();
         this.state = {
@@ -13,7 +13,7 @@ return (
     <div>
         <table>
             <tbody>
-                {this.props.productslist.map(product => <tr><td>{product.name}</td><td>{product.description}</td><td>{product.price}</td></tr>)}  
+                {this.props.products.map(product => <tr><td>{product.name}</td><td>{product.description}</td><td>{product.price}</td></tr>)}  
             </tbody>            
         </table>
     </div>
@@ -21,4 +21,4 @@ return (
 }
 }
 
-export default Products;
+export default ProductsList;
