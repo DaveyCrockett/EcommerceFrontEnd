@@ -45,7 +45,7 @@ render() {
       <header className="App-header">
         <h1>Hello World!</h1>
       </header>
-      <Product products={this.state.Products}/>
+      <Product productlist={this.state.Products}/>
     </div>
   );
 }

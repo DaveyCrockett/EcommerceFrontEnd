@@ -13,7 +13,7 @@ return (
     <div>
         <table>
             <tbody>
-                {this.props.products.map(product => <tr><td>{product.name}</td><td>{product.description}</td><td>{product.price}</td></tr>)}  
+                {this.props.productslist.map(product => <tr><td>{product.name}</td><td>{product.description}</td><td>{product.price}</td></tr>)}  
             </tbody>            
         </table>
     </div>
