@@ -46,7 +46,8 @@ class App extends Component {
     window.location.reload()
   }
 render() {
-  if (this.state.CurrentUser == 0)
+  console.log(this.state.CurrentUser)
+  if (this.state.CurrentUser.length === 0)
     return(
       <form className='StackForm' onSubmit = {(event) => this.SignInUser(event)}>
       <h3>Sign in:</h3>
@@ -57,23 +58,24 @@ render() {
       <button type="submit">Submit</button>
     </form>
     )
+  else
+    return (
+      <div className="App">
+        <header className="App-header">
+          <h1>Hello World!</h1>
+        </header>
+        <h2>Product List</h2>
+        <ProductList products={this.state.Products}/>
+        <h2>Product Detail</h2>
+        {this.state.Products.forEach((product) => {
+        return(
+          <ProductDetail key={product.id} product={product}/>
+        )
+      })}
+      </div>
+    );
   
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Hello World!</h1>
-      </header>
-      <h2>Product List</h2>
-      <ProductList products={this.state.Products}/>
-      {console.log(this.state.Products)}
-      <h2>Product Detail</h2>
-      {this.state.Products.map((product) => {
-      return(
-        <ProductDetail key={product.id} product={product}/>
-      )
-    })}
-    </div>
-  );
+  
 }
 }
 
