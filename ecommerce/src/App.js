@@ -30,12 +30,10 @@ class App extends Component {
   getProducts = async () => {
     let data = await api.get('/').then(({ data }) => data)
     this.setState({ Products : data })
-    console.log(this.state.Products)
   }
   getUser = async (token) => {
     let data = await api2.get('/', {headers:{"Authorization" : `Bearer ${token}`}}).then(({ data }) => data)
     this.setState({ CurrentUser : data })
-    console.log(this.state.CurrentUser)
   }
   SignInUser = async (event) => {
     event.preventDefault()
@@ -46,7 +44,6 @@ class App extends Component {
     window.location.reload()
   }
 render() {
-  console.log(this.state.CurrentUser)
   if (this.state.CurrentUser.length === 0)
     return(
       <form className='StackForm' onSubmit = {(event) => this.SignInUser(event)}>
@@ -67,9 +64,9 @@ render() {
         <h2>Product List</h2>
         <ProductList products={this.state.Products}/>
         <h2>Product Detail</h2>
-        {this.state.Products.forEach((product) => {
-        return(
-          <ProductDetail key={product.id} product={product}/>
+        {this.state.Products.map((product) => {
+          return(
+            <ProductDetail key={product.id} id={product.id} product={product}/>
         )
       })}
       </div>

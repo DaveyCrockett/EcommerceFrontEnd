@@ -1,6 +1,9 @@
 import axios from 'axios'
 import React, { Component } from 'react';
-  
+
+const api = axios.create({
+    baseURL:`https://localhost:44394/api/products`
+  })
   
 class ProductDetail extends Component {
     constructor(){
@@ -9,24 +12,27 @@ class ProductDetail extends Component {
         Products: [],
         }
     }
+    getOneProduct = async () => {
+        
+        let data = await api.get(`/${this.props.id}`).then(({ data }) => data)
+        this.setState({ Products : data })
+        }
 
-componentDidMount(){
-    const api = axios.create({
-        baseURL:`https://localhost:44394/api/products/${this.props.key}`
-      })
-}
+    componentDidMount(){
+        this.getOneProduct()
+    }
 render() {
-return (
-    <div>
-        <table>
-            <tbody>
-                <tr><td>{this.props.product.name}</td> 
-                <td>{this.props.product.description}</td> 
-                <td>{this.props.product.price}</td></tr> 
-            </tbody>            
-        </table>
-    </div>
-);
+    return (
+        <div>
+            <table>
+                <tbody>
+                    <tr><td>{this.state.Products.name}</td> 
+                    <td>{this.state.Products.description}</td> 
+                    <td>{this.state.Products.price}</td></tr> 
+                </tbody>            
+            </table>
+        </div>
+    );
 }
 }
 
