@@ -1,24 +1,20 @@
 import React, { Component } from 'react';
+import ProductDetail from './ProductDetail';
 
-class ProductsList extends Component {
-    constructor(){
-        super();
-        this.state = {
-        Products: [],
-        }
-    }
-    
-render() {
+function ProductsList(props) {
+ 
 return (
     <div>
         <table>
+            <thead>
+                
+            </thead>
             <tbody>
-                {this.props.products.map(product => <tr><td>{product.name}</td><td>{product.description}</td><td>{product.price}</td></tr>)}  
+                {props.products.map(product =>    <ProductDetail key={product.id} name = {product.name} description = {product.description} price = {product.price}></ProductDetail>)}
             </tbody>            
         </table>
     </div>
-);
-}
-}
+                )
+                }
 
 export default ProductsList;

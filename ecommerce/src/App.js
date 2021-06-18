@@ -63,12 +63,6 @@ render() {
         </header>
         <h2>Product List</h2>
         <ProductList products={this.state.Products}/>
-        <h2>Product Detail</h2>
-        {this.state.Products.map((product) => {
-          return(
-            <ProductDetail key={product.id} id={product.id} product={product}/>
-        )
-      })}
       </div>
     );
   

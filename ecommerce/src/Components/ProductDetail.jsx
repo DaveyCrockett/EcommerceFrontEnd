@@ -1,39 +1,17 @@
 import axios from 'axios'
 import React, { Component } from 'react';
 
-const api = axios.create({
-    baseURL:`https://localhost:44394/api/products`
-  })
-  
-class ProductDetail extends Component {
-    constructor(){
-        super();
-        this.state = {
-        Products: [],
-        }
-    }
-    getOneProduct = async () => {
-        
-        let data = await api.get(`/${this.props.id}`).then(({ data }) => data)
-        this.setState({ Products : data })
-        }
 
-    componentDidMount(){
-        this.getOneProduct()
-    }
-render() {
+  
+function ProductDetail(props) {
     return (
-        <div>
-            <table>
-                <tbody>
-                    <tr><td>{this.state.Products.name}</td> 
-                    <td>{this.state.Products.description}</td> 
-                    <td>{this.state.Products.price}</td></tr> 
-                </tbody>            
-            </table>
-        </div>
-    );
-}
+        <tr>
+            <td>{props.name}</td>
+            <td>{props.description}</td>
+            <td>{props.price}</td>
+        </tr>
+            )
+
 }
 
 export default ProductDetail;
