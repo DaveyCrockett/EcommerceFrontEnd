@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { Component } from 'react';
 import Rating from './Rating'
+import Reviews from './Review'
 
 const api = axios.create({
     baseURL:`https://localhost:44394/api/products`
@@ -33,6 +34,7 @@ render() {
                 </tbody>            
             </table>
             <Rating />
+            <Reviews productId={this.props.id}/>
         </div>
     );
 }
