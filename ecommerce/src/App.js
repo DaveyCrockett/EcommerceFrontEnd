@@ -9,8 +9,10 @@ const api = axios.create({
 const api2 = axios.create({
   baseURL:'https://localhost:44394/api/user/user'
 })
-
-const token = 'c275b4e7-8674-4246-b49f-9a5b0ca7d83b'
+const api3 = axios.create({
+  baseURL: 'https://localhost:44394/api/authentication/login'
+})
+const token = localStorage.getItem('data')
 
 class App extends Component {
   constructor(){
@@ -34,18 +36,33 @@ class App extends Component {
     this.setState({ CurrentUser : data })
     console.log(this.state.CurrentUser)
   }
-render() {
-  if (!this.state.CurrentUser){
-    return(
-      <h3>hello not signed in person</h3>
-    )
+  SignInUser = async (event) => {
+    event.preventDefault()
+    let res = await api3.post('/',{username:event.target.username.value,
+    password:event.target.password.value,})
+    localStorage.setItem('data', res.data.token)
+    this.getUser(token)
+    window.location.reload()
   }
+render() {
+  if (this.state.CurrentUser == 0)
+    return(
+      <form className='StackForm' onSubmit = {(event) => this.SignInUser(event)}>
+      <h3>Sign in:</h3>
+    <label htmlfor="username">Username: </label>
+    <input type = "text" id="username" name="username"/><br/>
+    <label htmlfor="password">Password: </label>
+    <input type = "text" id="password" name="password"/><br/>
+      <button type="submit">Submit</button>
+    </form>
+    )
+  
   return (
     <div className="App">
       <header className="App-header">
         <h1>Hello World!</h1>
       </header>
-      <ProductList products={this.state.Products}/>
+      {/* <ProductList Products={this.state.Products}/> */}
     </div>
   );
 }
