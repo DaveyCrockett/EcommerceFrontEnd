@@ -2,6 +2,7 @@ import './App.css';
 import axios from 'axios'
 import React, { Component } from 'react';
 import ProductList from './Components/ProductsList';
+import ProductDetail from './Components/ProductDetail';
 
 const api = axios.create({
   baseURL:'https://localhost:44394/api/products/product'
@@ -34,18 +35,30 @@ class App extends Component {
     this.setState({ CurrentUser : data })
     console.log(this.state.CurrentUser)
   }
+
 render() {
   if (!this.state.CurrentUser){
     return(
       <h3>hello not signed in person</h3>
     )
   }
+  
+  
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>Hello World!</h1>
       </header>
+      <h2>Product List</h2>
       <ProductList products={this.state.Products}/>
+      {console.log(this.state.Products)}
+      <h2>Product Detail</h2>
+      {this.state.Products.map((product) => {
+      return(
+        <ProductDetail key={product.id} product={product}/>
+      )
+    })}
     </div>
   );
 }
