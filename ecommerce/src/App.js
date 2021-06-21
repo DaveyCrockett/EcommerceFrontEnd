@@ -63,14 +63,33 @@ class App extends Component {
 render() {
   if (this.state.CurrentUser.length === 0)
     return(
-      <form className='StackForm' onSubmit = {(event) => this.SignInUser(event)}>
-      <h3>Sign in:</h3>
-    <label htmlfor="username">Username: </label>
-    <input type = "text" id="username" name="username"/><br/>
-    <label htmlfor="password">Password: </label>
-    <input type = "text" id="password" name="password"/><br/>
-      <button type="submit">Submit</button>
-    </form>
+      //<form className='StackForm' onSubmit = {(event) => this.SignInUser(event)}>
+      //<h3>Sign in:</h3>
+    //<label htmlfor="username">Username: </label>
+    //<input type = "text" id="username" name="username"/><br/>
+    //<label htmlfor="password">Password: </label>
+    //<input type = "text" id="password" name="password"/><br/>
+     // <button type="submit">Submit</button>
+   // </form>
+      <div className="login-container text-c animated flipInX">
+            <div>
+                <h1 className="logo-badge text-whitesmoke"><span className="fa fa-user-circle"></span></h1>
+            </div>
+                <h3 className="text-whitesmoke">Sign In Template</h3>
+                <p className="text-whitesmoke">Sign In</p>
+            <div className="container-content">
+                <form className="margin-t">
+                    <div className="form-group">
+                        <input type="text" class="form-control" placeholder="Username" required=""/>
+                    </div>
+                    <div className="form-group">
+                        <input type="password" class="form-control" placeholder="*****" required=""/>
+                    </div>
+                    <button type="submit" class="form-button button-l margin-b">Sign In</button>
+                </form>
+            </div>
+        </div>
+        
     )
     return (
       <div className="App">
