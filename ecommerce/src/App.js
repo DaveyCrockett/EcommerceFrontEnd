@@ -25,6 +25,7 @@ class App extends Component {
       CurrentUser: [],
       CurrentProduct:[],
       Reviews: [],
+      SeeReviews: 'off'
     }
   }
   componentDidMount(){
@@ -55,7 +56,9 @@ class App extends Component {
     this.setState({CurrentProduct : product})
     let p = product.id
     this.getReviews(p)
+    this.setState({SeeReviews: 'on'})
     console.log(this.state.Reviews)
+    console.log(this.state.SeeReviews)
   }
 render() {
   if (this.state.CurrentUser.length === 0)
@@ -75,7 +78,7 @@ render() {
           <h1>Hello World!</h1>
         </header>
         <h2>Product List</h2>
-        <ProductList products={this.state.Products} CurrentProduct={this.state.CurrentProduct} handleProductSelect ={this.handleProductSelect} reviews = {this.state.Reviews}/>
+        <ProductList products={this.state.Products} CurrentProduct={this.state.CurrentProduct} handleProductSelect ={this.handleProductSelect} reviews = {this.state.Reviews}handlereview = {this.handleReviewSelect}/>
       </div>
     );
   
