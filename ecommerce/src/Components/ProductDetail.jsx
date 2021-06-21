@@ -1,41 +1,15 @@
-import axios from 'axios'
-import React, { Component } from 'react';
-import Rating from './Rating'
+import React from 'react';
+import './ProductDetail.css';
 
-const api = axios.create({
-    baseURL:`https://localhost:44394/api/products`
-  })
-  
-class ProductDetail extends Component {
-    constructor(){
-        super();
-        this.state = {
-        Products: [],
-        }
-    }
-    getOneProduct = async () => {
-        
-        let data = await api.get(`/${this.props.id}`).then(({ data }) => data)
-        this.setState({ Products : data })
-        }
-
-    componentDidMount(){
-        this.getOneProduct()
-    }
-render() {
+const ProductDetail = ({product, handleProductSelect}) => {
     return (
-        <div>
-            <table>
-                <tbody>
-                    <tr><td>{this.state.Products.name}</td> 
-                    <td>{this.state.Products.description}</td> 
-                    <td>{this.state.Products.price}</td></tr> 
-                </tbody>            
-            </table>
-            <Rating />
-        </div>
-    );
-}
+        <tr className = 'Product-item'>
+            <td>{product.name}</td>
+            <td>{product.description}</td>
+            <td className="price">${product.price}</td>
+            <td><button className='review-button' onClick={() => handleProductSelect(product)}>See More</button></td>
+        </tr>
+    )
 }
 
 export default ProductDetail;
