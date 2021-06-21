@@ -37,7 +37,7 @@ const ProductList = ({products, handleProductSelect, CurrentProduct, reviews, se
 						</h5>
 						<div class="action">
 							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
-							<Rate product={product}/>
+							<Rate product={CurrentProduct}/>
                             <Reviews reviews = {reviews} seeReviews={seeReviews}/>
 						</div>
 					</div>
