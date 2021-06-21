@@ -2,6 +2,8 @@ import './App.css';
 import axios from 'axios'
 import React, { Component } from 'react';
 import ProductList from './Components/ProductsList';
+import ProductDetail from './Components/ProductDetail';
+import NavBar from './Components/NavBar';
 
 const api = axios.create({
   baseURL:'https://localhost:44394/api/products/product'
@@ -28,6 +30,7 @@ class App extends Component {
       SeeReviews: 'off'
     }
   }
+
   componentDidMount(){
     this.getProducts()
     this.getUser(token)
@@ -61,6 +64,10 @@ class App extends Component {
 render() {
   if (this.state.CurrentUser.length === 0)
     return(
+      <div>
+        <head>
+      </head>
+      <NavBar/>
       <form className='StackForm' onSubmit = {(event) => this.SignInUser(event)}>
       <h3>Sign in:</h3>
     <label htmlfor="username">Username: </label>
@@ -69,6 +76,7 @@ render() {
     <input type = "text" id="password" name="password"/><br/>
       <button type="submit">Submit</button>
       </form>
+      </div>
     //  <form className='StackForm' onSubmit = {(event) => this.SignInUser(event)}>
     //   <div className="login-container text-c animated flipInX">
     //         <div>
@@ -93,6 +101,7 @@ render() {
     )
     return (
       <div className="App">
+        <NavBar />
         <header className="App-header">
           <h1>Hello World!</h1>
         </header>
