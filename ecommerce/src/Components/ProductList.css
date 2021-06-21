@@ -1,0 +1,16 @@
+.product-table {
+  display: flex;
+  padding: 1em;
+  width: 80%;
+  align-items: center;
+}
+
+.product {
+  border: solid;
+  height: 250px;
+}
+
+.productheader {
+  padding-top: 1em;
+  align-items: center;
+}

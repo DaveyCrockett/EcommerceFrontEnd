@@ -2,7 +2,6 @@ import './App.css';
 import axios from 'axios'
 import React, { Component } from 'react';
 import ProductList from './Components/ProductsList';
-import ProductDetail from './Components/ProductDetail';
 
 const api = axios.create({
   baseURL:'https://localhost:44394/api/products/product'
@@ -13,6 +12,9 @@ const api2 = axios.create({
 const api3 = axios.create({
   baseURL: 'https://localhost:44394/api/authentication/login'
 })
+const api4 = axios.create({
+  baseURL: 'https://localhost:44394/api/reviews/'
+})
 const token = localStorage.getItem('data')
 
 class App extends Component {
@@ -21,6 +23,8 @@ class App extends Component {
     this.state = {
       Products: [],
       CurrentUser: [],
+      CurrentProduct:[],
+      Reviews: [],
     }
   }
   componentDidMount(){
@@ -43,6 +47,16 @@ class App extends Component {
     this.getUser(token)
     window.location.reload()
   }
+  getReviews = async (p) => {
+    let data = await api4.get(`${p}`).then(({ data }) => data)
+    this.setState({Reviews : data})
+  } 
+  handleProductSelect = (product) => {
+    this.setState({CurrentProduct : product})
+    let p = product.id
+    this.getReviews(p)
+    console.log(this.state.Reviews)
+  }
 render() {
   if (this.state.CurrentUser.length === 0)
     return(
@@ -55,14 +69,13 @@ render() {
       <button type="submit">Submit</button>
     </form>
     )
-  else
     return (
       <div className="App">
         <header className="App-header">
           <h1>Hello World!</h1>
         </header>
         <h2>Product List</h2>
-        <ProductList products={this.state.Products}/>
+        <ProductList products={this.state.Products} CurrentProduct={this.state.CurrentProduct} handleProductSelect ={this.handleProductSelect} reviews = {this.state.Reviews}/>
       </div>
     );
   

@@ -1,0 +1,10 @@
+.Product-item {
+  display: flex;
+  padding: 1em;
+  border-radius: 20;
+  border-style: solid;
+  align-items: center;
+}
+.review-button {
+  cursor: pointer;
+}

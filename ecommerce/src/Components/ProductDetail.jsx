@@ -1,18 +1,19 @@
-import axios from 'axios'
 import React, { Component } from 'react';
-import Rating from './Rating'
+import './ProductDetail.css';
 
-
-  
-function ProductDetail(props) {
+const ProductDetail = ({product, handleProductSelect}) => {
     return (
-        <tr>
-            <td>{props.name}</td>
-            <td>{props.description}</td>
-            <td>{props.price}</td>
+        <tr className = 'Product-item'>
+            {product.name}
+            <br></br>
+            {product.description}
+            <br></br>
+            {product.price}
+            <br></br>
+            <button className='review-button' onClick={() => handleProductSelect(product)}>See More</button>
+            <br></br>
         </tr>
-            )
-
+    )
 }
 
 export default ProductDetail;
