@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+
+    
+
 class Reviews extends Component {
     constructor(props) {
         super(props); 
         this.state = {
             reviews: [],
+            reviewsProduct: [],
         }
      }
 
@@ -18,7 +22,7 @@ class Reviews extends Component {
     
     async PostReviewData() {
         const currentReview = {reviews: this.state.reviews};
-        await axios.post(`https://localhost:44394/api/review`, { currentReview })
+        await axios.post(`https://localhost:44394/api/reviews`, { currentReview })
         .then(response => this.setState({
             reviews: [...this.state.reviews, response.data]
         })
@@ -28,10 +32,15 @@ class Reviews extends Component {
         
     }
 
-    renderGetData = async() => {
+    reviewsGetData = async () => {
+        this.state.reviews.map(review => this.renderGetData(review.ProductId))
+      }
+    
+    renderGetData = async(id) => {
         try {
-            let response = await axios.get(`https://localhost:44394/api/review/${this.props.productId}`)
-            this.setState({reviews: response.data});
+            let response = await axios.get(`https://localhost:44394/api/reviews/${id}`)
+            this.setState({reviewsProduct: [response.data]});
+            console.log(this.state.reviewsProduct)
         } catch (err) {
             console.log(err);
         } 
@@ -40,15 +49,11 @@ class Reviews extends Component {
     handleSubmit(event) {
         event.preventDefault()
         this.PostReviewData.bind(this)
-    }
+        this.props.reviews()
 
-    componentDidMount(){
-        this.renderGetData()
     }
-
+        
     render() { 
-        const reviewData = this.state.reviews
-        const mapData = reviewData.map((review, i) => (<td key={i}>{review.Comment}</td>));
         return ( 
             <div>
                 <h1>Reviews</h1>
@@ -56,13 +61,7 @@ class Reviews extends Component {
                     <input type='text' name='reviews' onChange={this.handleChange.bind(this)} placeholder='Enter Review' />
                     <input type='submit' value='Submit reviews' />
                 </form>
-                <table>
-                    <tbody>
-                <tr>
-                    {mapData}
-                </tr>
-                </tbody>
-                </table>
+                <p>{this.state.reviewsId}</p>
             </div>
          );
     }
