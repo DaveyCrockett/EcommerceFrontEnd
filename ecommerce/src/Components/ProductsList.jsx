@@ -14,28 +14,28 @@ const ProductList = ({products, handleProductSelect, CurrentProduct, reviews, se
         return (
                 <body>
                         
-                    <div class="container">
-		<div class="card">
-			<div class="container-fliud">
-				<div class="wrapper row">
+                    <div className="container">
+		<div className="card">
+			<div className="container-fliud">
+				<div className="wrapper row">
 			
-					<div class="details col-md-6">
-						<h3 class="product-title">{CurrentProduct.name}</h3>
-						<p class="product-description">{CurrentProduct.description}</p>
-						<h4 class="price">current price: <span>${CurrentProduct.price}</span></h4>
-						<h5 class="sizes">sizes:
-							<span class="size" data-toggle="tooltip" title="small">s</span>
-							<span class="size" data-toggle="tooltip" title="medium">m</span>
-							<span class="size" data-toggle="tooltip" title="large">l</span>
-							<span class="size" data-toggle="tooltip" title="xtra large">xl</span>
+					<div className="details col-md-6">
+						<h3 className="product-title">{CurrentProduct.name}</h3>
+						<p className="product-description">{CurrentProduct.description}</p>
+						<h4 className="price">current price: <span>${CurrentProduct.price}</span></h4>
+						<h5 className="sizes">sizes:
+							<span className="size" data-toggle="tooltip" title="small">s</span>
+							<span className="size" data-toggle="tooltip" title="medium">m</span>
+							<span className="size" data-toggle="tooltip" title="large">l</span>
+							<span className="size" data-toggle="tooltip" title="xtra large">xl</span>
 						</h5>
-						<h5 class="colors">colors:
-							<span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
-							<span class="color green"></span>
-							<span class="color blue"></span>
+						<h5 className="colors">colors:
+							<span className="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
+							<span className="color green"></span>
+							<span className="color blue"></span>
 						</h5>
-						<div class="action">
-							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
+						<div className="action">
+							<button className="add-to-cart btn btn-default" type="button">add to cart</button>
                             <Reviews reviews = {reviews} seeReviews={seeReviews}/>
 						</div>
 					</div>
