@@ -1,17 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './ProductDetail.css';
 
 const ProductDetail = ({product, handleProductSelect}) => {
     return (
         <tr className = 'Product-item'>
-            {product.name}
-            <br></br>
-            {product.description}
-            <br></br>
-            {product.price}
-            <br></br>
-            <button className='review-button' onClick={() => handleProductSelect(product)}>See More</button>
-            <br></br>
+            <td>{product.name}</td>
+            <td>{product.description}</td>
+            <td className="price">${product.price}</td>
+            <td><button className='review-button' onClick={() => handleProductSelect(product)}>See More</button></td>
         </tr>
     )
 }
