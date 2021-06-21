@@ -17,6 +17,9 @@ const api3 = axios.create({
 const api4 = axios.create({
   baseURL: 'https://localhost:44394/api/reviews/'
 })
+const api5 = axios.create({
+  baseURL: 'https://localhost:44394/api/ratings/'
+})
 const token = localStorage.getItem('data')
 
 class App extends Component {
@@ -27,7 +30,8 @@ class App extends Component {
       CurrentUser: [],
       CurrentProduct:[],
       Reviews: [],
-      SeeReviews: 'off'
+      SeeReviews: 'off',
+      Ratings: [],
     }
   }
 
@@ -54,11 +58,16 @@ class App extends Component {
   getReviews = async (p) => {
     let data = await api4.get(`${p}`).then(({ data }) => data)
     this.setState({Reviews : data})
-  } 
+  }
+  getRating = async (p) => {
+    let data = await api5.get(`${p}`).then(({ data }) => data)
+    this.setState({Ratings : data})
+  }  
   handleProductSelect = (product) => {
     this.setState({CurrentProduct : product})
     let p = product.id
     this.getReviews(p)
+    this.getRating(p)
     this.setState({SeeReviews: 'on'})
   }
 render() {

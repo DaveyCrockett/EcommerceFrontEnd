@@ -2,9 +2,8 @@ import React from 'react';
 import ProductDetail from './ProductDetail';
 import './ProductList.css'
 import Reviews from './Review';
-import Rate from './Rating';
 
-const ProductList = ({products, handleProductSelect, CurrentProduct, reviews, seeReviews}) => {
+const ProductList = ({products, handleProductSelect, CurrentProduct, reviews, seeReviews, ratings}) => {
     let renderedProducts = products.map((product) => {
         return(
             <ProductDetail key={product.id} product={product} handleProductSelect ={handleProductSelect}/>
@@ -37,7 +36,6 @@ const ProductList = ({products, handleProductSelect, CurrentProduct, reviews, se
 						</h5>
 						<div class="action">
 							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
-							<Rate product={CurrentProduct}/>
                             <Reviews reviews = {reviews} seeReviews={seeReviews}/>
 						</div>
 					</div>
