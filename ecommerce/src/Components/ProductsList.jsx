@@ -2,6 +2,7 @@ import React from 'react';
 import ProductDetail from './ProductDetail';
 import './ProductList.css'
 import Reviews from './Review';
+import Rate from './Rating';
 
 const ProductList = ({products, handleProductSelect, CurrentProduct, reviews, seeReviews}) => {
     let renderedProducts = products.map((product) => {
@@ -34,8 +35,9 @@ const ProductList = ({products, handleProductSelect, CurrentProduct, reviews, se
 							<span className="color green"></span>
 							<span className="color blue"></span>
 						</h5>
-						<div className="action">
-							<button className="add-to-cart btn btn-default" type="button">add to cart</button>
+						<div class="action">
+							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
+							<Rate product={CurrentProduct}/>
                             <Reviews reviews = {reviews} seeReviews={seeReviews}/>
 						</div>
 					</div>
