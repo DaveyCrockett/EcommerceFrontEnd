@@ -1,19 +1,15 @@
 import React from 'react';
-import Rating from './Rating'
-import Reviews from './Review'
+import './ProductDetail.css';
 
-  
-function ProductDetail(props) {
+const ProductDetail = ({product, handleProductSelect}) => {
     return (
-         <tr>
-            <td>{props.name}</td>
-            <td>{props.description}</td>
-            <td>{props.price}</td>
-            <td><Rating key={props.id} /></td>
-            <td><Reviews key={props.id} /></td>
+        <tr className = 'Product-item'>
+            <td>{product.name}</td>
+            <td>{product.description}</td>
+            <td className="price">${product.price}</td>
+            <td><button className='review-button' onClick={() => handleProductSelect(product)}>See More</button></td>
         </tr>
-            );
-
+    )
 }
 
 export default ProductDetail;
