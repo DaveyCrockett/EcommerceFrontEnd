@@ -185,6 +185,11 @@ img {
   padding: 1.3em;
 }
 
+.product-table {
+  border-collapse: collapse;
+  margin-left: 100px;
+}
+
 @-webkit-keyframes opacity {
   0% {
     opacity: 0;
@@ -207,6 +212,5 @@ img {
   100% {
     opacity: 1;
     -webkit-transform: scale(1);
-    transform: scale(1);
-  }
-}
+            transform: scale(1); } }
+            

@@ -1,12 +1,23 @@
 .Product-item {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 300px;
-  margin: auto;
   text-align: center;
   font-family: arial;
+  background-color: #ff9f1a;
+  border: 2px solid black;
 }
 
 .price {
+  color: #ff9f1a;
+  font-size: 22px;
+}
+
+.detailName {
+  color: #fff;
+  font-size: 22px;
+}
+
+.detailDescription {
   color: grey;
   font-size: 22px;
 }
