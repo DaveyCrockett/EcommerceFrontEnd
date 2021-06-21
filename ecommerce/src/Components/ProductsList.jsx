@@ -1,8 +1,9 @@
 import React from 'react';
 import ProductDetail from './ProductDetail';
 import './ProductList.css'
+import Reviews from './Review';
 
-const ProductList = ({products, handleProductSelect, CurrentProduct, reviews}) => {
+const ProductList = ({products, handleProductSelect, CurrentProduct, reviews, seeReviews}) => {
     let renderedProducts = products.map((product) => {
         return(
             <ProductDetail key={product.id} product={product} handleProductSelect ={handleProductSelect}/>
@@ -16,7 +17,8 @@ const ProductList = ({products, handleProductSelect, CurrentProduct, reviews}) =
                     <header className= 'productheader'>{CurrentProduct.name}</header>
                     <p className='itemdesc'>{CurrentProduct.description}</p>
                     <h5 className = 'price'>${CurrentProduct.price}</h5>
-                    <button>Add To Cart</button><button>See Reviews</button>
+                    <Reviews reviews={reviews} seeReviews= {seeReviews}/>
+                    <button>Add To Cart</button>
                     </section>
                 </body>
             )
