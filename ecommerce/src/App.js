@@ -2,6 +2,7 @@ import './App.css';
 import axios from 'axios'
 import React, { Component } from 'react';
 import ProductList from './Components/ProductsList';
+import NavBar from './Components/NavBar.jsx'
 
 const api = axios.create({
   baseURL:'https://localhost:44394/api/products/product'
@@ -58,6 +59,10 @@ class App extends Component {
     this.getUser(token)
     window.location.reload()
   }
+  SignOut = () => {
+    localStorage.removeItem('data')
+    window.location.reload()
+  }
   SignUpUser = async (event) => {
     event.preventDefault()
     let res = await api7.post('/',{firstname:event.target.firstname.value,
@@ -86,6 +91,13 @@ class App extends Component {
     Quantity: 1})
     console.log(res)
   }
+  RemoveFromShoppingCart = async () => {
+    let res = await api6.delete(`/${this.state.CurrentUser.id}/${this.state.CurrentProduct.id}/`,
+    {UserId:this.state.CurrentUser.id,
+    ProductId:this.state.CurrentProduct.id,
+    Quantity: 1})
+    console.log(res)
+  }
   handleBuy = (CurrentProduct) => {
     alert(`adding ${CurrentProduct.name} to ${this.state.CurrentUser.id} cart`)
     this.addToShoppingCart()
@@ -104,6 +116,7 @@ render() {
         <head>
       </head>
       <NavBar/>
+      <button type='submit' onClick={()=>this.SignOut}>Sign Out</button>
       <form className='StackForm' onSubmit = {(event) => this.SignInUser(event)}>
       <h3>Sign in:</h3>
     <label htmlfor="username">Username: </label>
@@ -156,6 +169,8 @@ render() {
     return (
       <div className="App">
         <header className="App-header">
+        <NavBar/>
+          <button type='button' onClick={()=>this.SignOut()}>Sign Out</button>
           <h1>Hello World!</h1>
         </header>
         <h2>Product List</h2>
