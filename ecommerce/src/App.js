@@ -25,6 +25,9 @@ const api6 = axios.create({
 const api7 = axios.create({
   baseURL: 'https://localhost:44394/api/authentication'
 })
+const api8 = axios.create({
+  baseURL:'https://localhost:44394/api/products'
+})
 const token = localStorage.getItem('data')
 
 class App extends Component {
@@ -37,6 +40,7 @@ class App extends Component {
       Reviews: [],
       SeeReviews: 'off',
       Ratings: [],
+      ShoppingCart: [],
     }
   }
   componentDidMount(){
@@ -91,8 +95,13 @@ class App extends Component {
     Quantity: 1})
     console.log(res)
   }
+  getShoppingCart = async () => {
+    let data = await api6.get(`/${this.state.CurrentUser.id}`).then(({ data }) => data)
+    this.setState({ Products : data })
+    console.log(data)
+  }
   RemoveFromShoppingCart = async () => {
-    let res = await api6.delete(`/${this.state.CurrentUser.id}/${this.state.CurrentProduct.id}/`,
+    let res = await api6.post('/',
     {UserId:this.state.CurrentUser.id,
     ProductId:this.state.CurrentProduct.id,
     Quantity: 1})
@@ -109,6 +118,13 @@ class App extends Component {
     this.getRating(p)
     this.setState({SeeReviews: 'on'})
   }
+  ListProduct = async (event) => {
+    event.preventDefault()
+    let res = await api8.post('/',{name:event.target.name.value,
+    description:event.target.description.value,
+    price:event.target.price.value})
+    console.log(res)
+}
 render() {
   if (this.state.CurrentUser.length === 0)
     return(
@@ -175,6 +191,16 @@ render() {
         </header>
         <h2>Product List</h2>
         <ProductList products={this.state.Products} CurrentProduct={this.state.CurrentProduct} handleProductSelect ={this.handleProductSelect} reviews = {this.state.Reviews}handlereview = {this.handleReviewSelect} seeReviews={this.state.seeReviews} handleBuy={this.handleBuy}/>
+        <form className='StackForm' onSubmit = {(event) => this.ListProduct(event)}>
+      <h3>Add a product:</h3>
+      <label htmlfor="name">Name: </label>
+      <input type = "text" id="name" name="name"/><br/>
+      <label htmlfor="description">Description: </label>
+      <input type = "text" id="description" name="description"/><br/>
+      <label htmlfor="price">Price: </label>
+      <input type="number" id="price" name="price"placeholder="1.00" step="0.01" min="0" max="1000000"/>
+      <button type="submit">Submit</button>
+      </form>
       </div>
     );
   
