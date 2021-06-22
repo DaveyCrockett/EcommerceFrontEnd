@@ -2,8 +2,6 @@ import './App.css';
 import axios from 'axios'
 import React, { Component } from 'react';
 import ProductList from './Components/ProductsList';
-import ProductDetail from './Components/ProductDetail';
-import NavBar from './Components/NavBar';
 
 const api = axios.create({
   baseURL:'https://localhost:44394/api/products/product'
@@ -40,7 +38,6 @@ class App extends Component {
       Ratings: [],
     }
   }
-
   componentDidMount(){
     this.getProducts()
     this.getUser(token)
@@ -158,7 +155,6 @@ render() {
     )
     return (
       <div className="App">
-        <NavBar />
         <header className="App-header">
           <h1>Hello World!</h1>
         </header>
